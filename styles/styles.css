@@ -1,0 +1,355 @@
+﻿/* תיקונים וסטיילינג של ה-header והתפריט */
+header {
+    background-size: cover; /* מכסה את כל השטח של ה-header */
+    background-position: center; /* ממקם את התמונה במרכז */
+    height: 400px; /* גובה של ה-header */
+    display: flex;
+    justify-content: center; /* ממקם את התוכן במרכז */
+    align-items: center; /* מיישר את התוכן אנכית */
+    color: white; /* צבע טקסט */
+    text-align: center; /* ממקם את הטקסט במרכז */
+    padding: 0;
+    position: relative;
+    z-index: 1; /* על מנת שהתפריט יהיה מעל */
+    width: 100%; /* מכסה את כל רוחב המסך */
+}
+
+/* פילטר כהה להבהרת הטקסט */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* מסנן כהה להבהרת הטקסט */
+    z-index: -1; /* מאפשר שהטקסט יהיה מעל */
+}
+
+/* עיצוב התפריט */
+nav {
+    background-color: #e4e2d5; /* צבע רקע כחול כהה */
+    padding: 10px 20px;
+    text-align: right;
+    position: absolute; /* נוודא שהתפריט יהיה על התמונה */
+    width: 100%;
+    top: 0;
+    z-index: 2; /* התפריט יהיה מעל התמונה */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* עיצוב של כפתור המבורגר */
+#nav-button {
+    display: none; /* ברירת המחדל כפתור המבורגר מוסתר */
+    cursor: pointer;
+}
+
+#nav-button img {
+    width: 30px;
+    height: auto;
+}
+
+/* עיצוב טקסט ב- header */
+h1 {
+    font-size: 3rem; /* גודל גופן גדול יותר */
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 50px;
+    font-family: "Rubik ExtraBold", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* עיצוב לרשימה בתפריט */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; /* מיישר את התפריט מימין לשמאל */
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #352607; /* טקסט בצבע לבן */
+    font-weight: bold; /* טקסט בבולד */
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+    text-decoration: none; /* הסרת קו תחתון */
+    font-family: "Rubik ExtraBold", sans-serif;
+}
+
+/* רספונסיביות למסכים קטנים */
+@media (max-width: 600px) {
+    /* התפריט יהפוך לרשימה ויתפוס את כל המסך */
+    nav ul {
+        display: none; /* התפריט מוסתר בברירת מחדל */
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #e4e2d5;
+        width: 100%;
+        text-align: right;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+   
+    /* תפריט המבורגר */
+    #nav-button {
+        display: block; /* כפתור המבורגר מוצג */
+        cursor: pointer;
+    }
+
+    /* הכיתה flex-container-nav מוסתרת במסכים קטנים */
+    .flex-container-nav.hide-mobile {
+        display: none; /* מסתיר את התפריט הרגיל במסכים קטנים */
+    }
+
+    nav ul.show {
+        display: block; /* ברגע שנפתח */
+        opacity: 1; /* גלוי */
+        transform: translateY(0); /* חוזר למקומו */
+    }
+
+    nav ul li {
+        display: block; /* התפריט יהפוך לרשימה אנכית */
+        padding: 10px;
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
+    }
+}
+
+/* עיצוב התפריט במסכים גדולים */
+@media only screen and (min-width: 920px) {
+    /* במובייל זה מוסתר, במסכים גדולים זה מוצג */
+    .flex-container-nav.hide-mobile {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        position: relative;
+    }
+
+    #nav-button {
+        display: none; /* כפתור המבורגר מוסתר במסכים גדולים */
+    }
+
+    nav ul {
+        display: flex; /* התפריט יישאר בתצוגה אופקית */
+    }
+}
+
+/* עיצוב בסיסי */
+body {
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #c0c6a7;
+    color: #333;
+}
+
+/* עיצוב כרטיסיות סוגי כאב */
+.pain-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: #e6e4d7;
+    border: 1px solid #dddacb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(53, 38, 7);
+    padding: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: right;
+}
+
+.card h2 {
+    color: #757e46;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: "Rubik ExtraBold", sans-serif;
+    font-size: 1.3rem;
+}
+
+.card span {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.card strong {
+    font-weight: bold;
+    color: #352607;
+}
+
+.card-info {
+    display: none; /* ברירת מחדל - מוסתר */
+    opacity: 0; /* שקיפות מלאה */
+    transition: opacity 0.5s ease-in-out; /* אנימציה של שקיפות */
+}
+
+.card-info:not(.hidden) {
+    display: block; /* ברגע שמוצג */
+    opacity: 1; /* שקיפות מלאה */
+}
+
+/* שיפור האנימציה כשפותחים את הכרטיס */
+.card.expanded {
+    height: auto;
+    transition: height 0.3s ease-out, box-shadow 0.3s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* הוספת צל */
+}
+
+/* עיצוב לכפתור הצגת/הסתרת המידע */
+.btn-toggle-info {
+    background-color: #757e46;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* עיצוב לשדה חיפוש */
+.search-section {
+    padding: 20px;
+    text-align: center;
+}
+
+#search-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* התאמה למובייל */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .pain-types {
+        grid-template-columns: 1fr; /* רק עמוד אחד */
+    }
+
+    .card {
+        padding: 10px; /* יותר קומפקטי */
+    }
+
+    nav ul {
+        display: block; /* עיצוב תפריט בצורה של תפריט רשימה */
+        text-align: right;
+    }
+}
+
+/* עיצוב לאייקון ליד כותרת סוג הכאב */
+.info-icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #757e46; /* צבע אייקון */
+}
+
+/* עיצוב לפופ-אפ */
+.popup {
+    display: none; /* ברירת מחדל, הפופ-אפ לא יוצג */
+    position: fixed;
+    top: 0; /* מתחיל מלמעלה */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* גובה של 100% מהמסך */
+    background-color: rgba(0, 0, 0, 0.5); /* רקע שקוף כהה */
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* לוודא שהפופ-אפ יהיה מעל כל דבר אחר */
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #757e46;
+}
+
+.close-btn {
+    background-color: #757e46;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+}
+
+.info-icon {
+    cursor: pointer;
+}
+
+/* עיצוב כללי לכפתורי לייק ודיסלייק */
+.feedback button {
+    font-size: 18px;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.feedback button:focus {
+    outline: none;
+}
+
+/* עיצוב כפתור לייק */
+.feedback button:nth-child(1) {
+    background-color: #4CAF50; /* ירוק */
+    color: white;
+}
+
+/* עיצוב כפתור דיסלייק */
+.feedback button:nth-child(2) {
+    background-color: #f44336; /* אדום */
+    color: white;
+}

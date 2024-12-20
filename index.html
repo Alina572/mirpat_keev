@@ -1,0 +1,356 @@
+﻿<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ברוכים הבאים למרפאת הכאב</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="styles/reset.css" rel="stylesheet" />
+    <link href="styles/styles.css" rel="stylesheet" />
+
+    <!-- JS -->
+    <script src="jScripts/javascript.js"></script>
+</head>
+
+<body>
+<div id="container">
+    <!-- תפריט ניווט -->
+    <nav>
+        <button id="nav-button" class="btn-mobile" onclick="toggleNav()">
+            <img src="images/nav-icon.svg" alt="ניווט">
+        </button>
+        <ul id="main-nav" class="flex-container-nav hide-mobile">
+            <li><a href="#">דף הבית</a></li>
+            <li><a href="#">אודות המרפאה</a></li>
+            <li><a href="#">רופאים</a></li>
+            <li><a href="#">עזרה</a></li>
+        </ul>
+    </nav>
+    <!-- כותרת עם תמונה -->
+    <header style="position: relative; text-align: center;">
+        <img src="images/doctor.jpg" alt="תמונת נושא למרפאת הכאב" style="width: 200%; height: auto; max-height: 400px; object-fit: cover;">
+        <h1>
+            ברוכים הבאים למרפאת הכאב
+        </h1>
+    </header>
+
+    <!-- סינון כרטיסים -->
+    <section class="search-section">
+        <input type="text" id="search-input" placeholder="חפש סוג כאב..." oninput="filterCards(this.value)">
+    </section>
+
+    <main>
+        <section class="pain-types">
+            <!-- כרטיס 1 -->
+            <div class="card" id="card1">
+                <h2>
+                    <span class="pain-title">כאבי גב תחתון</span>
+                    <!-- כפתורי פופ אפ להצגת פרטי רופא (תקף לכל הכרטיסיות)-->
+                    <span class="info-icon" onclick="showDoctorInfo('doctor1')">🔍</span>
+                    <img src="images/back.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                    
+                </h2>
+                <!-- כפתורי הצגת והסתרת המידע בכרטיסיה (תקף לכל הכרטיסיות) -->
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card1-info')">הצג/הסתר מידע</button>
+                <div id="card1-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים בגב התחתון עם הקרנה אפשרית לרגליים.</span>
+                    <span><strong>גורמים:</strong> עומס, יציבה לא נכונה, פריצת דיסק.</span>
+                    <span><strong>טיפולים:</strong> פיזיותרפיה, תרופות נוגדות דלקת, תרגילים.</span>
+                </div>
+                <!-- כפתורי לייק ודיסלייק (תקף לכל הכרטיסיות) -->
+                <div class="feedback">
+                    <button onclick="likeCard('card1')">👍</button> 
+                    <button onclick="dislikeCard('card1')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor1" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor1')">&times;</span>
+                    <h3>ד"ר מרים כהן</h3>
+                    <p><strong>מומחיות:</strong> כאבי גב תחתון ועמוד שדרה</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor1')">סגור</button>
+                </div>
+                
+            </div>
+
+            <!-- כרטיס 2 -->
+            <div class="card" id="card2">
+                <h2>
+                    <span class="pain-title">כאבי צוואר</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor2')">🔍</span>
+                    <img src="images/nack.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card2-info')">הצג/הסתר מידע</button>
+                <div id="card2-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים בצוואר וכתפיים, לעיתים מלווה בנוקשות.</span>
+                    <span><strong>גורמים:</strong> ישיבה ממושכת, פציעות, מתח נפשי.</span>
+                    <span><strong>טיפולים:</strong> עיסוי, שיפור יציבה, טיפול תרופתי.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card2')">👍</button>
+                    <button onclick="dislikeCard('card2')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor2" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor2')">&times;</span>
+                    <h3>ד"ר מרים שוורץ</h3>
+                    <p><strong>מומחיות:</strong> כאבי צוואר ועמוד שדרה</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor2')">סגור</button>
+                </div>
+               
+            </div>
+
+            <!-- כרטיס 3 -->
+            <div class="card" id="card3">
+                <h2>
+                    <span class="pain-title">כאבי ראש</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor3')">🔍</span>
+                    <img src="images/head.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card3-info')">הצג/הסתר מידע</button>
+                <div id="card3-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> מיגרנות, כאבי מתח, כאבים חדים או עמומים.</span>
+                    <span><strong>גורמים:</strong> מתח נפשי, חוסר שינה, צריכת קפאין.</span>
+                    <span><strong>טיפולים:</strong> תרופות, שינוי אורח חיים, טכניקות הרפיה.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card3')">👍</button>
+                    <button onclick="dislikeCard('card3')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor3" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor3')">&times;</span>
+                    <h3>ד"ר רחלי פיטוסי</h3>
+                    <p><strong>מומחיות:</strong> כאבי מיגרנה וראש</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor3')">סגור</button>
+                </div>
+               
+            </div>
+
+            <!-- כרטיס 4 -->
+            <div class="card" id="card4">
+                <h2>
+                    <span class="pain-title">כאבי מפרקים</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor4')">🔍</span>
+                    <img src="images/arm.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card4-info')">הצג/הסתר מידע</button>
+                <div id="card4-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים במפרקים עם נפיחות או נוקשות.</span>
+                    <span><strong>גורמים:</strong> דלקת מפרקים שגרונית, פיברומיאלגיה.</span>
+                    <span><strong>טיפולים:</strong> פיזיותרפיה, משככי כאבים, תרופות ביולוגיות.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card4')">👍</button>
+                    <button onclick="dislikeCard('card4')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor4" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor4')">&times;</span>
+                    <h3>ד"ר חן מזרחי</h3>
+                    <p><strong>מומחיות:</strong> כאבי מפרקים וגיל הזהב</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor4')">סגור</button>
+                </div>
+              
+            </div>
+
+            <!-- כרטיס 5 -->
+            <div class="card" id="card5">
+                <h2>
+                    <span class="pain-title">כאבים נוירופטיים</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor5')">🔍</span>
+                    <img src="images/leg.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card5-info')">הצג/הסתר מידע</button>
+                <div id="card5-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים עצביים, תחושת שריפה או דקירות.</span>
+                    <span><strong>גורמים:</strong> פגיעות עצביות, סוכרת, זיהומים.</span>
+                    <span><strong>טיפולים:</strong> תרופות נוירולוגיות, פיזיותרפיה, טכניקות הרפיה.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card5')">👍</button>
+                    <button onclick="dislikeCard('card5')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor5" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor5')">&times;</span>
+                    <h3>ד"ר יוסף כהן</h3>
+                    <p><strong>מומחיות:</strong> כאבים נוירופטיים ועצבים</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor5')">סגור</button>
+                </div>
+                
+            </div>
+
+            <!-- כרטיס 6 -->
+            <div class="card" id="card6">
+                <h2>
+                    <span class="pain-title">כאבי סרטן</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor6')">🔍</span>
+                    <img src="images/cancer.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card6-info')">הצג/הסתר מידע</button>
+                <div id="card6-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים חדים או מתמשכים הקשורים למחלה.</span>
+                    <span><strong>גורמים:</strong> גידול, טיפולים כימיים או קרינה.</span>
+                    <span><strong>טיפולים:</strong> תרופות, טיפולים אלטרנטיביים, תמיכה פסיכולוגית.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card6')">👍</button>
+                    <button onclick="dislikeCard('card6')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor6" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor6')">&times;</span>
+                    <h3>ד"ר מרינה סולינה</h3>
+                    <p><strong>מומחיות:</strong> כימו טיפולי סרטן וכאבים נוספים</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor6')">סגור</button>
+                </div>
+                
+            </div>
+
+            <!-- כרטיס 7 -->
+            <div class="card" id="card7">
+                <h2>
+                    <span class="pain-title">כאבי פנטום</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor7')">🔍</span>
+                    <img src="images/fantom.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card7-info')">הצג/הסתר מידע</button>
+                <div id="card7-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים המורגשים בגפה שנקטעה.</span>
+                    <span><strong>גורמים:</strong> פעילות עצבית במערכת העצבים המרכזית.</span>
+                    <span><strong>טיפולים:</strong> תרופות, פיזיותרפיה, טיפולים התנהגותיים.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card7')">👍</button>
+                    <button onclick="dislikeCard('card7')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor7" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor7')">&times;</span>
+                    <h3>ד"ר שרון אדרי</h3>
+                    <p><strong>מומחיות:</strong> פיזיותרפיה וכאבי פנטום</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor7')">סגור</button>
+                </div>
+               
+            </div>
+
+            <!-- כרטיס 8 -->
+            <div class="card" id="card8">
+                <h2>
+                    <span class="pain-title">כאבי רגליים</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor8')">🔍</span>
+                    <img src="images/legs.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card8-info')">הצג/הסתר מידע</button>
+                <div id="card8-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> שורש כף הרגל, רגליים עליונות, רגליים תחתונות</span>
+                    <span><strong>גורמים:</strong> הליכה שגויה, גנטיקה, עומס</span>
+                    <span><strong>טיפולים:</strong> תרופות מניעה, טכניקות הרפיה, טיפול תרופתי.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card8')">👍</button>
+                    <button onclick="dislikeCard('card8')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor8" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor8')">&times;</span>
+                    <h3>ד"ר מריה כהן</h3>
+                    <p><strong>מומחיות:</strong> שלד כף הרגל ושרירי הרגל</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor8')">סגור</button>
+                </div>
+              
+            </div>
+
+            <!-- כרטיס 9 -->
+            <div class="card" id="card9">
+                <h2>
+                    <span class="pain-title">כאבי שרירים</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor9')">🔍</span>
+                    <img src="images/sholder.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card9-info')">הצג/הסתר מידע</button>
+                <div id="card9-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים בשרירים הנגרמים ממאמץ או מתח.</span>
+                    <span><strong>גורמים:</strong> תנועות חזרתיות, עומס על השרירים.</span>
+                    <span><strong>טיפולים:</strong> עיסוי, תרגילים, תרופות נוגדות דלקת.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card9')">👍</button>
+                    <button onclick="dislikeCard('card9')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor9" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor9')">&times;</span>
+                    <h3>ד"ר נגה שם</h3>
+                    <p><strong>מומחיות:</strong> כאבי שרירים וספורטאים</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor9')">סגור</button>
+                </div>
+                
+            </div>
+
+            <!-- כרטיס 10 -->
+            <div class="card" id="card10">
+                <h2>
+                    <span class="pain-title">כאבי ידיים</span>
+                    <span class="info-icon" onclick="showDoctorInfo('doctor10')">🔍</span>
+                    <img src="images/hand.png" alt="תמונת נושא למרפאת הכאב" style="width: 60%; height: 60%; max-height: 70px; object-fit: cover;">
+                </h2>
+                <button class="btn-toggle-info" onclick="toggleCardInfo('card10-info')">הצג/הסתר מידע</button>
+                <div id="card10-info" class="card-info hidden">
+                    <span><strong>מאפיינים:</strong> כאבים בידיים הנגרמים ממאמץ יתר או תנועות שגויות</span>
+                    <span><strong>גורמים:</strong> עומס, תנועות שגויות, כתיבה מרובה</span>
+                    <span><strong>טיפולים:</strong> עיסוי, תרגילים, תרופות נוגדות דלקת.</span>
+                </div>
+                <div class="feedback">
+                    <button onclick="likeCard('card10')">👍</button>
+                    <button onclick="dislikeCard('card10')">👎</button>
+                </div>
+            </div>
+
+            <div id="doctor10" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup('doctor10')">&times;</span>
+                    <h3>ד"ר תמרה מרדכי</h3>
+                    <p><strong>מומחיות:</strong>כאבי ידיים ושורש כף היד</p>
+                    <p><strong>טלפון:</strong> 03-1234567</p>
+                    <button class="close-btn" onclick="closePopup('doctor10')">סגור</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+
+</html>
